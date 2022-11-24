@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 const initialData = {
+  u_name: "",
   weight: "",
   height: "",
   date: ""
@@ -34,6 +35,16 @@ function BmiForm(props) {
   return (
     <>
       <div className="row">
+      <div className="col m6 s12">
+          <label htmlFor="u_name">Name</label>
+          <input 
+            id="u_name"
+            name="u_name"
+            placeholder="Your Name"
+            value={data.u_name}
+            onChange={handleChange}
+          />
+        </div>
         <div className="col m6 s12">
           <label htmlFor="weight">Weight (in kg)</label>
           <input 
@@ -67,18 +78,18 @@ function BmiForm(props) {
             id="bmi-btn"
             className="calculate-btn"
             type="button"
-            disabled={data.weight === '' || data.height === ''}
+            disabled={data.weight === '' || data.height === '' || data.u_name === ''}
             onClick={handleSubmit}
           >
             Calculate BMI
           </button>
         </div>
-        <div className="col m6 s12 center">
+        {/* <div className="col m6 s12 center">
           <select className="chartSelect" value={props.defaultSelect} onChange={(e) => props.selectChange(e)}>
             <option value="Line">Line</option>
             <option value="Bar">Bar</option>
           </select>
-        </div>
+        </div> */}
       </div>
     </>
   );

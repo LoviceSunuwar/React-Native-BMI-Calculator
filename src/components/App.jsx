@@ -12,6 +12,9 @@ function App() {
   const [state, setState] = useState(initialState);
   const [barData, setBarData] = useState({});
   const [chartType, setChartType] = useState(initialChartType);
+  let underweight = "You should eat a little bit more";
+  let normal = "Keep doing what you are doing"
+
 
   useEffect(() => {
     localStorage.setItem('bmiData', JSON.stringify(state));
@@ -22,7 +25,7 @@ function App() {
   }, [state]);
 
   function handleChange(newData) {
-    const { height, weight } = newData;
+    const { u_name, height, weight } = newData;
     const heightInM = height / 100;
     newData.bmi = (weight / (heightInM * heightInM)).toFixed(2);
     newData.id = uuidv4();
@@ -48,6 +51,7 @@ function App() {
     setChartType(e.target.value);
   }
 
+
   return (
     <div className='container'>
       <div className='row center'>
@@ -55,19 +59,22 @@ function App() {
       </div>
       <div className='row'>
         <div className='col m12 s12'>
-          <BmiForm onChange={handleChange} selectChange={chartSelect} defaultSelect={chartType} />
-          <Chart labelData={barData.date} bmiData={barData.bmi} chart={chartType} />
+          <BmiForm onChange={handleChange}   />
+          {/* <Chart labelData={barData.date} bmiData={barData.bmi} chart={chartType} /> */}
           <div>
             <div className='row center'>
-              <h4 className='white-text'>7 Day Data</h4>
+              <h4 className='white-text'>User Data</h4>
             </div>
             <div className='data-container row'>
               {state.length > 0 ? (
                 state.map(info => {
+      
+
                   return (
                     <Info 
                       key={info.id}
                       id={info.id}
+                      u_name={info.u_name}
                       weight={info.weight}
                       height={info.height}
                       date={info.date}

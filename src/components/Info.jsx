@@ -9,6 +9,7 @@ function Info(props) {
             BMI: {props.bmi}
           </span>
           <div className="card-data">
+            <span data-test="u_name">Name: {props.u_name} kg</span>
             <span data-test="weight">Weight: {props.weight} kg</span>
             <span data-test="height">Height: {props.height} cm</span>
             <span data-test="date">Date: {props.date}</span>
